@@ -38,6 +38,7 @@ def Scan():
 def CrashRoom(code, host, bypass, type):
     global work, roomslist
     work = True
+    joined = True
     crashed = False
     def add_log(text):
         log_text.config(state='normal')
@@ -45,14 +46,31 @@ def CrashRoom(code, host, bypass, type):
         log_text.see(END)
         log_text.config(state='disabled')
     def on_message(ws, message):
+        nonlocal joined
         print(message)
+        try: 
+            if 'full' in json.loads(message)['result']['msg']: 
+                add_log(f'Room {code} is full!') 
+                joined = False
+        except: ...
+        try: 
+            if 'locked' in json.loads(message)['result']['msg']: 
+                add_log(f'Room {code} is locked!') 
+                joined = False
+        except: ...
+        try: 
+            if 'twitch' in json.loads(message)['result']['msg']: 
+                add_log('Incorrect token!') 
+                joined = False
+        except: ...
     def on_error(ws, error):
             #add_log(f'{nickname.replace("%20", "")} Error.')
         print(f'ERROR: ws - {ws} error - {error}')
     def on_close(ws, *args):
         global work, roomslist
+        nonlocal joined
         for obj in roomslist:
-            if obj['code'] == code and obj['type'] == type and obj['bypass'] == bypass and crashed == False: 
+            if obj['code'] == code and obj['type'] == type and obj['bypass'] == bypass and crashed == False and joined: 
                 obj['successful'] = True
 
                 add_log(f'Crashed a room {code}!')
