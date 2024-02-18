@@ -411,7 +411,7 @@ def statcheck():
 
             else:
 
-                res = f'Room: {obj["code"]}, Game: {obj["gamename"]}, Type: {obj["type"]}, Bypassing: {obj["bypass"]}, Crashed: {obj["successful"]}, \n{res}'
+                res = f'Room: {obj["code"]}, Game: {obj["gamename"]}, Type: {obj["type"]}, Bypassing: {obj["bypass"]}, Crashed: {obj["successful"]}\n{res}'
         
         Statistic_lbl.configure(text=res)
 
