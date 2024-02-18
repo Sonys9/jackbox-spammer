@@ -1,7 +1,6 @@
 🔥 JackBox Botter/Crasher 🔥
 
 🔥Functions: Crasher(slow), BIG Crasher(fast), audience spam, players spam (TWITCH AUTH BYPASS)🔥
-![image](https://github.com/Sonys9/jackbox-spammer/assets/137277008/59d5f285-aa40-4cb5-ac05-bc058497e956)
 
 💎 Important: custom nicknames do not work when bypassing twitch auth 💎
 💎 Important: crashers does not work in the jackbox party pack newer than 5 💎
