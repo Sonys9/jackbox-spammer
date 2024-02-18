@@ -384,7 +384,7 @@ def stat():
 
     root = Tk()
     root.title('Statistic')
-    root.geometry('690x200')
+    root.geometry('720x200')
     root.configure(bg='black')
     root.resizable(False, True)
 
