@@ -9,6 +9,7 @@
 💎 Important: Bots can vote!💎
 
 How to use: Install a python 3 or newer and open "jackbox spam.py".
+The modules will install themselves
 
 How to get Twitch Token: 
  - Log in to your Twitter account on the Jackbox website
