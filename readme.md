@@ -3,7 +3,10 @@
 🔥Functions: Crasher(slow), BIG Crasher(fast), audience spam, players spam (TWITCH AUTH BYPASS)🔥
 
 💎 Important: custom nicknames do not work when bypassing twitch auth 💎
+
 💎 Important: crashers does not work in the jackbox party pack newer than 5 💎
+
+💎 Important: Bots can vote!💎
 
 How to use: Install a python 3 or newer and open "jackbox spam.py".
 
