@@ -254,7 +254,7 @@ def AddBot(roomcode, type, host, bypass):
             if not gamename.endswith('Vote'): 
                 if gamename != 'TriviaDeath2AudienceChoice' and not gamename.endswith('Vote'): gamename = f'{gamename} Vote'
             ws.send('{"seq":1,"opcode":"audience/text-ring/push","params":{"name":"'+gamename.replace(" Vote", " Comments")+'","text":"ПИДОРАСЫ '+str(random.randint(1000,9999))+'"}}')
-            #add_log(f'Maked a choice (text) {nickname.replace("%20", "")}')
+            add_log(f'Maked a choice (text) {sessionnick}')
         if 'choices' in message and type == 'audience' and json.loads(message)['opcode'] != 'client/welcome': 
             if gamename != 'TriviaDeath2AudienceChoice' and not gamename.endswith('Vote'): gamename = f'{gamename} Vote'
             #print('gamename: '+gamename)
@@ -269,7 +269,7 @@ def AddBot(roomcode, type, host, bypass):
                 ws.send(str('{"seq":1,"opcode":"audience/count-group/increment","params":{"name":"')+str(gamename)+str('","vote":"')+str(json.loads(message)['result']['val']['choices'][0]['text'])+str('","times":1}}'))
             except Exception as e: print(e)
             ws.send('{"seq":1,"opcode":"audience/count-group/increment","params":{"name":"audienceChoose","vote":"0","times":1}}')
-            #add_log(f'Maked a choice {nickname.replace("%20", "")}')
+            add_log(f'Maked a choice {sessionnick}')
         if ('CanStart' in message or 'canStart' in message) and type == 'player':
             ws.send('{"seq":1,"opcode":"client/send","params":{"from":2,"to":1,"body":{"startGame":true}}}')
                 #add_log(f'Started a game {nickname.replace("%20", "")}')
@@ -306,7 +306,7 @@ def AddBot(roomcode, type, host, bypass):
             ws.send('{"seq":'+str(random.randint(3,5))+',"opcode":"client/send","params":{"from":'+str(fromm)+',"to":1,"body":{"vote":1}}}')
             ws.send('{"seq":'+str(random.randint(3,5))+',"opcode":"client/send","params":{"from":'+str(fromm)+',"to":1,"body":{"action":"choose","choice":0}}}')
             ws.send('{"seq":'+str(random.randint(3,5))+',"opcode":"client/send","params":{"from":'+str(fromm)+',"to":1,"body":{"chosenCategory":0}}}')
-            add_log(f'Maked an answer (button) {sessionnick} {fromm}')
+            #add_log(f'Maked an answer (button) {sessionnick} {fromm}')
         if ('icture' in message or 'draw' in str(message).lower()) and type == 'player':
             fromm = listfrom[nicknamee.index(nickname)]
             answers = ['НЕГРЫ ПИДОРЫ', 'МАТЬ ЕБАЛ НЕГРОВ', 'ЧЕРНОКОЖИЕ ОБЕЗЬЯНЫ СОСИТЕ', 'ТВИЧ ТОП НО НЕГРЫ ДАУНЫ', 'ГОЛД МАН ЧЕНЕЛ ПИДОРАС', 'ПИДОРАСЫ', 'УБИТЬ НЕГРОВ', 'НЕГРЫ РАБЫ',
