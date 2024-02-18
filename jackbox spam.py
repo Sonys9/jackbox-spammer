@@ -95,7 +95,7 @@ def CrashRoom(code, host, bypass, type):
             if add: roomslist.append({'code': code, 'successful': False, 'type': type, 'bypass': bypass, 'gamename': gamename})
             def checker():
                 global roomslist
-                time.sleep(15)
+                time.sleep(30)
                 for obj in roomslist:
                     if obj['code'] == code and obj['type'] == type and obj['bypass'] == bypass: 
                         if obj['successful'] == False: 
@@ -407,7 +407,7 @@ def stat():
     root.configure(bg='black')
     root.resizable(False, True)
 
-    Statistic_lbl = Label(root, text='', font=('Arial Black', 10), fg='white', bg='black')
+    Statistic_lbl = Label(root, text='', font=('Arial Black', 10), fg='white', bg='black', anchor="w")
     Statistic_lbl.place(x=5, y=5)
 
     root.mainloop()
