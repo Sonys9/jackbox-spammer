@@ -190,7 +190,7 @@ def AddBot(roomcode, type, host, bypass):
     nicknameee.append(nickname)
     def on_message(ws, message):
         global gamename, listfrom, nicknamee, nicknameee, drms, sessionnick, roomslist
-        print(message)
+        #print(message)
         choiced = False
         try: 
             if 'full' in json.loads(message)['result']['msg']: 
@@ -431,7 +431,7 @@ def CheckCFG():
         with open('C:\\JackBox Spammer Configuration.json', 'r') as f:
             #print(f.read())
             loaded_text = json.loads(str(f.read()))
-            print(loaded_text['twitch_token'])
+           # print(loaded_text['twitch_token'])
             TwitchToken_entry.insert(0, loaded_text['twitch_token'])
             NumberOfBots_entry.insert(0, loaded_text['number'])
             NameOfBots_entry.insert(0, loaded_text['nicknames'])
