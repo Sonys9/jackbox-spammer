@@ -148,9 +148,30 @@ def Botting(code, type):
         add_log(f'Trying add a {numberofbots} bots...') 
     while True:
         try:
-            r = requests.get(f'https://ecast.jackboxgames.com/api/v2/rooms/{code}', timeout=1)
+            r = requests.get(f'https://ecast.jackboxgames.com/api/v2/rooms/{code}', headers={
+    "authority": "ecast.jackboxgames.com",
+    "method": "GET",
+    "path": "/api/v2/rooms/TWTV",
+    "scheme": "https",
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "ru,en;q=0.9,en-GB;q=0.8,en-US;q=0.7",
+        "Cache-Control": "no-cache",
+        "Origin": "https://jackbox.tv",
+        "Pragma": "no-cache",
+        "Referer": "https://jackbox.tv/",
+        "Sec-Ch-Ua": "\"Not A(Brand\";v=\"99\", \"DuckDuckGo\";v=\"121\", \"Chromium\";v=\"121\"",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": "\"Windows\"",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "cross-site",
+        "Sec-Gpc": "1",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0"
+}, timeout=1)
             break
         except:...
+    #print(r.text)
     loaded_text = json.loads(r.text)
     #print(loaded_text)
     #print(r.text)
