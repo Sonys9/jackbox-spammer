@@ -151,7 +151,7 @@ def Botting(code, type):
             r = requests.get(f'https://ecast.jackboxgames.com/api/v2/rooms/{code}', headers={
     "authority": "ecast.jackboxgames.com",
     "method": "GET",
-    "path": "/api/v2/rooms/TWTV",
+    "path": f"/api/v2/rooms/{code}",
     "scheme": "https",
         "Accept": "*/*",
         "Accept-Encoding": "gzip, deflate, br",
@@ -171,7 +171,7 @@ def Botting(code, type):
 }, timeout=1)
             break
         except:...
-    #print(r.text)
+    print(r.text)
     loaded_text = json.loads(r.text)
     #print(loaded_text)
     #print(r.text)
