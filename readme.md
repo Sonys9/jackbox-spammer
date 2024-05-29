@@ -1,6 +1,6 @@
 🔥 JackBox Botter/Crasher 🔥
 
-🔥Functions: Crasher(slow) [PATHED], BIG Crasher(fast) [PATHED], audience spam, players spam (TWITCH AUTH BYPASS)🔥
+🔥Functions: Crasher(slow) [PATCHED], BIG Crasher(fast) [PATCHED], audience spam, players spam (TWITCH AUTH BYPASS)🔥
 
 Important points:
 
