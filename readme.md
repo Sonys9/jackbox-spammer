@@ -1,3 +1,21 @@
+КОД ГОВНО НЕ ЮЗАЙТЕ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 🔥 JackBox Botter/Crasher 🔥 (shitcode)
 
 🔥Functions: Crasher(slow) [PATCHED], BIG Crasher(fast) [PATCHED], audience spam, players spam (TWITCH AUTH BYPASS)🔥
