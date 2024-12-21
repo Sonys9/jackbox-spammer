@@ -30,7 +30,25 @@ def Scan():
     
     code = ''
     for i in range(4):code=f'{code}{random.choice(strings)}'
-    r = requests.get(f'https://ecast.jackboxgames.com/api/v2/rooms/{code}')
+    r = requests.get(f'https://ecast-qa.jackboxgames.com/api/v2/rooms/{code}', headers = {
+    "authority": "ecast-qa.jackboxgames.com",
+    "method": "GET",
+    "path": "/api/v2/rooms/MMYG",
+    "scheme": "https",
+    "accept": "*/*",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "ru,en;q=0.9,en-GB;q=0.8,en-US;q=0.7",
+    "origin": "https://jackbox.ru",
+    "priority": "u=1, i",
+    "referer": "https://jackbox.ru/",
+    "sec-ch-ua": '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0"
+})
     if json.loads(r.text)['ok'] != False:
         #print(f'Raiding: {code}')
         Botting(code)
@@ -148,7 +166,7 @@ def Botting(code, type):
         add_log(f'Trying add a {numberofbots} bots...') 
     while True:
         try:
-            r = requests.get(f'https://ecast.jackboxgames.com/api/v2/rooms/{code}', headers={
+            r = requests.get(f'https://ecast-qa.jackboxgames.com/api/v2/rooms/{code}', headers={
     "authority": "ecast.jackboxgames.com",
     "method": "GET",
     "path": f"/api/v2/rooms/{code}",
@@ -192,8 +210,8 @@ def Botting(code, type):
         if loaded_text['body']['full'] and (type == 'player' or type == 'crasher' or type == 'bigcrasher'):
             add_log('Room is full!') 
             return
-        with open('C:\\JackBox Spammer Configuration.json', 'r') as f:
-            with open('C:\\JackBox Spammer Configuration.json', 'w') as f2:
+        with open('JackBox Spammer Configuration.json', 'r') as f:
+            with open('JackBox Spammer Configuration.json', 'w') as f2:
                 f2.write('{"twitch_token": "'+TwitchToken_entry.get().replace(' ', '').replace('   ', '')+'", "number": "'+numberofbots+'", "nicknames": "'+NameOfBots_entry.get().replace(' ', '').replace('  ', '')+'"}')
         if type != 'crasher' and type != 'bigcrasher':
             for i in range(int(numberofbots)):
@@ -383,7 +401,7 @@ def AddBot(roomcode, type, host, bypass):
     def on_open(ws):...
 #wss://ecast.jackboxgames.com/api/v2/audience/XZVY/play?role=audience&name=COMMAND&format=json&user-id=bcf8e533-1efd-418f-ace1-57ea3e250f23
     #print(f"wss://{host if type == 'player' else 'ecast.jackboxgames.com'}/api/v2/{'rooms' if type == 'player' else 'audience'}/{roomcode}/play?role={type}&name={nickname}&format=json&user-id={random.randint(10000000000000,999999999999999999999999)}")
-    ws = websocket.WebSocketApp(f"wss://{host if type == 'player' else 'ecast.jackboxgames.com'}/api/v2/{'rooms' if type == 'player' else 'audience'}/{roomcode}/play?role={type}&name={nickname}&format=json&user-id={random.randint(10000000000000,999999999999999999999999)}{'&twitch-token='+TwitchToken_entry.get().replace(' ', '').replace('   ', '') if bypass else ''}",
+    ws = websocket.WebSocketApp(f"wss://{host if type == 'player' else 'ecast-qa.jackboxgames.com'}/api/v2/{'rooms' if type == 'player' else 'audience'}/{roomcode}/play?role={type}&name={nickname}&format=json&user-id={random.randint(10000000000000,999999999999999999999999)}{'&twitch-token='+TwitchToken_entry.get().replace(' ', '').replace('   ', '') if bypass else ''}",
                                     on_message = on_message,
                                     on_error = on_error,
                                     on_close = on_close,
@@ -460,21 +478,25 @@ threading.Thread(target=statcheck).start()
 
 def CheckCFG():
 
-    if not os.path.exists('C:\\JackBox Spammer Configuration.json'):
+    if not os.path.exists('JackBox Spammer Configuration.json'):
 
-        with open('C:\\JackBox Spammer Configuration.json', 'w') as f:f.write('{"twitch_token": "", "number": "", "nicknames": ""}')
+        with open('JackBox Spammer Configuration.json', 'w') as f:f.write('{"twitch_token": "", "number": "", "nicknames": ""}')
     
     else:
 
         #time.sleep(3)
 
-        with open('C:\\JackBox Spammer Configuration.json', 'r') as f:
+        with open('JackBox Spammer Configuration.json', 'r') as f:
             #print(f.read())
-            loaded_text = json.loads(str(f.read()))
-            #print(loaded_text['twitch_token'])
-            TwitchToken_entry.insert(0, loaded_text['twitch_token'])
-            NumberOfBots_entry.insert(0, loaded_text['number'])
-            NameOfBots_entry.insert(0, loaded_text['nicknames'])
+            try:
+                loaded_text = json.loads(str(f.read()))
+            
+                #print(loaded_text['twitch_token'])
+                TwitchToken_entry.insert(0, loaded_text['twitch_token'])
+                NumberOfBots_entry.insert(0, loaded_text['number'])
+                NameOfBots_entry.insert(0, loaded_text['nicknames'])
+            except:
+                with open('JackBox Spammer Configuration.json', 'w') as f:f.write('{"twitch_token": "", "number": "", "nicknames": ""}')
 
 threading.Thread(target=CheckCFG).start()
 
